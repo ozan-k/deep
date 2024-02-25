@@ -10,6 +10,14 @@ import numpy as np
 
 maude_file = 'MSdli.maude'
 
+try:
+	if sys.argv[1] == "refute":
+		refute = True
+	else:
+		refute = False
+except:	
+	refute = False
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -136,6 +144,11 @@ def prove(stack,printProof):
 			formula = derivation[-1]
 		else:
 			print("No!")
+			time_v = time.time() - start_time
+			lengths.append(0)
+			sizes.append(0)
+			steps.append(0)
+			times.append(time_v)
 			return False	
 			
 		# Stop after 30000 iterations.
@@ -191,7 +204,10 @@ def prove_all(folder,number,printProof):
 		print()
 		print(k+1,"/",length)
 		print(f)
-		if not prove_main(f,printProof):
+		proven = prove_main(f,printProof)
+		if refute and proven:
+			lst.append(k)
+		elif not refute and not proven:
 			lst.append(k)
 			# break
 	time_s = '\n\nSearch completed in\n'
@@ -211,7 +227,11 @@ def prove_all(folder,number,printProof):
 	result["mean time"] = np.mean(times)
 	result["sd time"] = np.std(times)
 	print(duration)
-	write_to_file(str(result),maude_file + "_deepest_search_on_formulae_0" + str(number+2) )
+	write_to_file(str(result),maude_file + "_deepest_search_on_formulae_0" + str(number+2) + ("_refute" if refute else ""))
 	return file,result,duration 
 
-prove_all("../../Formulae/MLL",0,False) 
+
+prove_all("../../Formulae/MLL",4,False) 
+# prove_all("../../Formulae/MLL",1,False) 
+# prove_all("../../Formulae/MLL",2,False)
+# prove_all("../../Formulae/MLL",3,False)  

@@ -1,0 +1,76 @@
+fmod MLL-Signature is
+  sorts Atom Unit Structure Sequent Front .
+  subsort Atom < Structure .
+  subsort Unit < Structure .
+  subsort Sequent < Front .
+
+  ops a b c d e f g h i j k l m n p q r s : -> Atom .
+  op 1 : -> Unit .
+  op bot : -> Unit .
+  op |~_ : Structure -> Sequent [ prec 40 ] .
+  op _and_ : Front Front -> Front [assoc comm] .
+  op -_ : Atom -> Atom [ prec 50 ] .
+  op [_,_] : Structure Structure -> Structure [assoc comm] .
+  op {_,_} : Structure Structure -> Structure [assoc] .
+endfm
+
+
+fmod Can-interact is
+  inc MLL-Signature .
+  sort Interaction_Query .
+
+  op can-interact : -> Interaction_Query .
+  op empty-set : -> Interaction_Query .
+  op _or_ : Interaction_Query Interaction_Query -> Interaction_Query [assoc comm prec 70] .
+  op _&_ : Interaction_Query Interaction_Query -> Interaction_Query [assoc comm prec 65] .
+  op _ci_ : Atom Structure -> Interaction_Query [prec 60] .
+
+  var R Q T U V : Structure .
+  var A B : Atom .
+  var C : Interaction_Query .
+
+   eq 1 ci bot = can-interact .
+   eq bot ci 1 = can-interact .
+   eq A ci - A = can-interact .
+   eq - A ci A = can-interact .
+   eq A ci B = empty-set [owise] .
+
+   eq [ T , U ] ci R = T ci R or U ci R .
+   eq { T , U } ci R = T ci R or U ci R .
+
+   eq A ci [ R , T ] = A ci R or A ci T .
+   eq A ci { R , T } = A ci R or A ci T .
+
+   eq can-interact or C = can-interact .
+   eq empty-set or C = C .
+
+   eq can-interact & C = C .
+endfm
+
+mod SC_search is
+  inc Can-interact .
+  var R T Q U V : Structure . var A B C D E F G H I J : Atom .
+  var X : Front .
+  var S : Sequent .
+
+  rl [bot] : |~ [ R , bot ] => |~ R .
+
+  rl [ai] : |~ [A , - A]  => |~ 1 .
+
+  rl [mix] : |~ [ R , T ] => |~ R and |~ T .
+
+  rl [mix0] : |~ R and |~ =>  |~ R .
+
+  crl [par1] : |~ [ { R , T } , [ U , V ] ] => |~ [ R , U ]  and |~ [ T , V ]
+             if R ci U  &  T ci V = can-interact .
+
+  crl [par2] : |~ [ R , { U , V } ] => |~ [ R , U ]  and |~  V
+             if R ci U  = can-interact .
+
+  crl [par3] : |~ [ R , { U , V } ] => |~ [ R , V ]  and |~  U
+             if R ci V = can-interact .
+
+  rl [collapse] : |~ 1 and X  => X .
+
+  rl [tens] : |~ { R , T }  => |~ R  and |~ T .
+endm

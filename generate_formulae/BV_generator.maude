@@ -1,0 +1,17 @@
+mod S is
+sorts Atom Structure . subsort Atom < Structure .
+op -_ : Atom -> Atom [ prec 50 ] .
+op [_,_] : Structure Structure -> Structure [assoc comm] .
+op {_,_} : Structure Structure -> Structure [assoc comm] .
+op <_;_> : Structure Structure -> Structure [assoc] .
+ops a : -> Atom .  var R T U V : Structure .
+
+rl [switch]  : { [ R , U ] , T } => [ { R , T } , U ] .
+rl [switch2] : { R , U } => [ R , U ] .
+
+rl [seq1] :  < [ R , U ] ; [ T , V ] > => [ < R ; T > , < U ; V > ] .
+rl [seq2] :  < R ; U > => [ R , U ] .
+rl [seq3] :  < [ R , U ] ; T > => [ < R ; T > , U ] .
+rl [seq4] :  < R ; [ T , U ] > => [ < R ; T > , U ] .
+
+endm

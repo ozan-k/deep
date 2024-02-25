@@ -1,0 +1,29 @@
+fmod MLL-Signature is
+  sorts Atom Unit Structure .
+  subsort Atom < Structure .
+  subsort Unit < Structure .
+
+  ops a b c d e f g h i j k l m n p q r s : -> Atom .
+  op 1 : -> Unit .
+  op bot : -> Unit .
+  op -_ : Atom -> Atom [ prec 50 ] .
+  op [_,_] : Structure Structure -> Structure [assoc comm] .
+  op {_,_} : Structure Structure -> Structure [assoc comm] .
+endfm
+
+mod FBV is
+  inc MLL-Signature .
+  var R T Q U V : Structure . var A B C D E F G H I J : Atom .
+
+  rl [rule-1] : { 1 , R } => R .
+
+  rl [rule-bot] : [ bot , R ] => R .
+
+  rl [ai] : {R, [A , - A] } => R .
+
+  rl [switch-3c] : [ { A , T } , B ] => { [ A , B ] , T } .
+  rl [switch-3d] : [ { [ R , Q ] , T } , B ] => { [ [ R , Q ] , B ] , T } .
+
+  rl [switch-4c] : [ { A , T } , { U , V } ] => { [ A , { U , V } ] , T } .
+  rl [switch-4d] : [ { [ R , Q ] , T } , { U , V } ] => { [ [ R , Q ] , { U , V } ] , T } .
+endm

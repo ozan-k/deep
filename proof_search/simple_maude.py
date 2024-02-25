@@ -136,7 +136,7 @@ def prove_all(folder_file,printProof):
 	result = {}
 	for k,f in enumerate(formulae):
 		print(k+1,"/",length)
-		proven = prove(f,printProof):
+		proven = prove(f,printProof)
 		if refute and proven: 
 			lst.append(k)
 		elif not refute and not proven:

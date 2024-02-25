@@ -7,6 +7,9 @@ import time
 import sys
 import numpy as np
 
+
+maude_file = 'MSdli.maude'
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -43,7 +46,7 @@ times = []
 breadthfirst = False
 
 maude.init(advise=False)
-maude.load(os.path.join(os.path.dirname(__file__), '.', 'FBVi.maude'))
+maude.load(os.path.join(os.path.dirname(__file__), '.', maude_file))
 m = maude.getCurrentModule()
 
 # ---------------
@@ -208,14 +211,7 @@ def prove_all(folder,number,printProof):
 	result["mean time"] = np.mean(times)
 	result["sd time"] = np.std(times)
 	print(duration)
-	write_to_file(str(result),"FBVi_deepest_search_on_formulae_0" + str(number+2) )
+	write_to_file(str(result),maude_file + "_deepest_search_on_formulae_0" + str(number+2) )
 	return file,result,duration 
 
-# prove_main("[{[a, [a, - a]], [a, [a, - a]]}, [{a, [- a, - a]}, {a, [- a, - a]}]]",False)
-# prove_all("../../Formulae/FBV",0,False) 
-# prove_all("../../Formulae/FBV",1,False) 
-# prove_all("../../Formulae/FBV",2,False) 
-# prove_all("../../Formulae/FBV",3,False) 
-prove_all("../../Formulae/FBV",4,False) 
-prove_all("../../Formulae/FBV",5,False) 
-# prove_all("../../Formulae/FBV",6,False) 	
+prove_all("../../Formulae/MLL",0,False) 

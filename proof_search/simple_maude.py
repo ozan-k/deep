@@ -24,6 +24,8 @@ sizes = []
 steps = []
 times = []
 
+refute = False
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -134,8 +136,11 @@ def prove_all(folder_file,printProof):
 	result = {}
 	for k,f in enumerate(formulae):
 		print(k+1,"/",length)
-		if not prove(f,printProof):
+		proven = prove(f,printProof):
+		if refute and proven: 
 			lst.append(k)
+		elif not refute and not proven:
+			lst.append(k) 	
 			# break
 	time_s = '\n\nSearch completed in\n'
 	duration = time.time() - start_time

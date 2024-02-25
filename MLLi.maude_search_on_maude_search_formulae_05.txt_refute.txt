@@ -1,1 +1,0 @@
-{'../../Formulae/MLL_nonprovable/formulae_05.txt': {'mean length': 0.0, 'sd length': 0.0, 'mean size': 0.0, 'sd size': 0.0, 'mean steps': 0.0, 'sd steps': 0.0, 'length': '38518', 'failed': [], 'duration': 37.641937017440796, 'mean time': 4.862345071514606e-06, 'sd time': 1.18154459557699e-06, 'system': 'MLLi.maude', 'formulae': '../../Formulae/MLL_nonprovable/formulae_05.txt'}}

@@ -59,10 +59,10 @@ def generate_and_write(atom_count=2,file_name="formulae_0"):
     to_write = transitive(seeds[atom_count-2])
     write_to_file("\n".join(to_write),file_name+ str(atom_count)) 
 
-
-# for i in range(2,8):
-#     print(i)
-#     generate_and_write(i)
+def simple_generate():
+    for i in range(2,8):
+        print(i)
+        generate_and_write(i)
 
 
 def generate_and_write_from_file_seed(seed_folder,seed_file,file_name="formulae_0"):
@@ -76,6 +76,8 @@ def generate_and_write_from_file_seed(seed_folder,seed_file,file_name="formulae_
             result = []
             n +=1 
     write_to_file("\n".join(result),seed_file + "_" +file_name + str(n))
+
+simple_generate()
 
 # generate_and_write_from_file_seed("./BV_seeds","seeds_BV_02.txt")
 # generate_and_write_from_file_seed("./BV_seeds","seeds_BV_03.txt")

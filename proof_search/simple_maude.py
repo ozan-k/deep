@@ -165,9 +165,12 @@ def prove_main():
 	this['formulae'] = folder_and_file_path
 	result[folder_and_file_path] = this
 	print(result)
-	f_type =  "_maude_search_" + folder_and_file_path.split("/")[-1] + "_"
+	f_type =  "_maude_search_" + folder_and_file_path.split("/")[-1]
 	write_to_file(str(result),maude_file + "_search_on" +  f_type )
 
 
 prove_main()
 	
+# ./simple_maude.py MSdli.maude ../../Formulae/MLL/formulae_02.tx
+
+# ./simple_maude.py MLLi.maude ../../Formulae/MLL/formulae_02.txt

@@ -52,8 +52,9 @@ def transitive(formula):
 def generate_and_write(atom_count=2,file_name="formulae_0"):
     write_to_file(transitive(seeds[atom_count-2]),file_name+ str(atom_count)) 
 
+def main():
+    for i in range(2,8):
+        print(i)
+        generate_and_write(i)
 
-for i in range(2,8):
-    print(i)
-    generate_and_write(i)
-
+main()

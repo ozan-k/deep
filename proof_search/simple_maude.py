@@ -171,6 +171,7 @@ def prove_main():
 	result[folder_and_file_path] = this
 	print(result)
 	f_type =  "_maude_search_" + folder_and_file_path.split("/")[-1]
+	f_type = f_type + ("_refute" if refute else  "")
 	write_to_file(str(result),maude_file + "_search_on" +  f_type )
 
 

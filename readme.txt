@@ -51,4 +51,6 @@ This option is useful running experiments for comparing systems and strategies.
 
 # ./strategy_maude.py MSdli.maude ../../Formulae/MLL/formulae_02.txt
 
- 
+# Counter example
+
+The script <deepest.py> generates the counter-example.

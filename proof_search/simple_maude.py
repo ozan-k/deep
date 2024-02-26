@@ -24,7 +24,13 @@ sizes = []
 steps = []
 times = []
 
-refute = True
+try:
+	if sys.argv[3] == "refute":
+		refute = True
+	else:
+		refute = False
+except:	
+	refute = False
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -110,7 +116,9 @@ def prove(formula_string,printProof):
 	times.append(time_v)
 	steps.append(0)
 	return False	
-			
+
+
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -134,6 +142,7 @@ def prove_all(folder_file,printProof):
 	print()
 	start_time = time.time()
 	result = {}
+	print("#######",refute)
 	for k,f in enumerate(formulae):
 		print(k+1,"/",length)
 		proven = prove(f,printProof)

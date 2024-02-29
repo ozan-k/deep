@@ -88,11 +88,11 @@ deepest_rules = ["switch-3d","switch-4c", "switch-4d"]
 score = { "rule-1"    : 1000000000,
 	      "rule-bot"  : 100000000,
 	      "ai"        : 10000000,
-		  "ai-par"    : 10000000,
-          "switch-3c" : 1000000,
+		  "switch-3c" : 1000000,
 	      "switch-3d" : 100000,
 	      "switch-4c" : 10000,
-	      "switch-4d" : 1000 }
+	      "switch-4d" : 1000,
+		  "ai-par"    : 100}
 
 score_sc ={ "bot"  : 100000000,
 		 "tens" : 50000000, 

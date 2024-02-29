@@ -51,8 +51,6 @@ mod FBV is
 
   rl [ai] : {R, [A , - A] } => R .
 
-  rl [ai-par] : [R, [A , - A] ] => R .
-
   crl [switch-3c] : [ { A , T } , B ] => { [ A , B ] , T }
                                            if A ci B = can-interact .
   crl [switch-3d] : [ { [ R , Q ] , T } , B ] => { [ [ R , Q ] , B ] , T }

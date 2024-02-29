@@ -160,7 +160,7 @@ def prove(stack,printProof):
 		else:
 			return False
 		# Stop after 30000 iterations.
-		if k == 50000:   ## time-out number of steps
+		if k == 30000:   ## time-out number of steps
 			return False
 		if k % 10000 == 0:
 			print(".",end="")	 	
